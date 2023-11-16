@@ -3,15 +3,15 @@ gsutil ls gs://yoshikarai_bucket/data
 beeline -u jdbc:hive2://localhost:10000/default -n nidhi_chavan2@cluster-5ddl-m -d org.apache.hive.jdbc.HiveDriver
 
 CREATE EXTERNAL TABLE Amazon_Data
-  (Id VARCHAR(20),
+  (Id INT,
   ProductId VARCHAR(50),
   UserId VARCHAR(50),
-  ProfileName VARCHAR(255),
-  HelpfulnessNumerator VARCHAR(255),
-  HelpfulnessDenominator VARCHAR(255),
-  Score VARCHAR(255),
-  Summary VARCHAR(255),
-  Text VARCHAR(255))
+  ProfileName VARCHAR(50),
+  HelpfulnessNumerator VARCHAR(20),
+  HelpfulnessDenominator VARCHAR(20),
+  Score VARCHAR(50),
+  Summary VARCHAR(50),
+  Text VARCHAR(100))
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 LOCATION 'gs://yoshikarai_bucket/data';
 
