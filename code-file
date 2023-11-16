@@ -21,7 +21,7 @@ DESCRIBE Amazon_Data;
 
 SELECT COUNT(*) from Amazon_Data where UserId = ' ';
 
-ELECT COUNT(*) from Amazon_Data where ProductId = ' '
+SELECT COUNT(*) from Amazon_Data where ProductId = ' '
 
 CREATE TABLE spam_table AS
 SELECT *
