@@ -1,0 +1,34 @@
+gsutil ls gs://yoshikarai_bucket/data
+
+beeline -u jdbc:hive2://localhost:10000/default -n nidhi_chavan2@cluster-5ddl-m -d org.apache.hive.jdbc.HiveDriver
+
+CREATE EXTERNAL TABLE Amazon_Data
+  (Id VARCHAR(20),
+  ProductId VARCHAR(50),
+  UserId VARCHAR(50),
+  ProfileName VARCHAR(255),
+  HelpfulnessNumerator VARCHAR(255),
+  HelpfulnessDenominator VARCHAR(255),
+  Score VARCHAR(255),
+  Summary VARCHAR(255),
+  Text VARCHAR(255))
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+LOCATION 'gs://yoshikarai_bucket/data';
+
+LOAD DATA INPATH 'gs://yoshikarai_bucket/data/Amazon_Data.csv' INTO TABLE Amazon_Data;
+
+DESCRIBE Amazon_Data;
+
+SELECT COUNT(*) from Amazon_Data where UserId = ' ';
+
+ELECT COUNT(*) from Amazon_Data where ProductId = ' '
+
+CREATE TABLE spam_table AS
+SELECT *
+FROM Amazon_Data
+WHERE Text LIKE '%spam%';
+
+CREATE TABLE ham_table AS
+SELECT *
+FROM Amazon_Data
+WHERE Text NOT LIKE '%spam%';
